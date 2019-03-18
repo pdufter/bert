@@ -590,6 +590,7 @@ def create_model(bert_config, is_training, input_ids, input_mask, segment_ids,
   output_layer = tf.reduce_mean(model.get_sequence_output(), axis=-2)
   # do mean pooling
   # APPLY LINEAR TRANSFORMATION HERE
+  import ipdb; ipdb.set_trace();
 
   hidden_size = output_layer.shape[-1].value
 
