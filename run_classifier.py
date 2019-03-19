@@ -125,6 +125,11 @@ flags.DEFINE_integer(
     "num_tpu_cores", 8,
     "Only used if `use_tpu` is True. Total number of TPU cores to use.")
 
+tf.flags.DEFINE_string(
+    "trafo", None,
+    "[Optional] Linear Transformation to be applied before Dense layer.")
+
+
 
 class InputExample(object):
   """A single training/test example for simple sequence classification."""
@@ -591,10 +596,11 @@ def create_model(bert_config, is_training, input_ids, input_mask, segment_ids,
   # instead.
   output_layer = tf.reduce_mean(model.get_sequence_output(), axis=-2)
   # do mean pooling
-  # APPLY LINEAR TRANSFORMATION HERE
-  W = np.load("/mounts/work/philipp/multilingual_bert/W_arb_eng.npy")
-  W = tf.convert_to_tensor(W.transpose(), dtype=tf.float32)
-  output_layer = tf.matmul(output_layer, W)
+  if FLAGS.trafo is not None:
+    # APPLY LINEAR TRANSFORMATION HERE
+    W = np.load(FLAGS.trafo)
+    W = tf.convert_to_tensor(W.transpose(), dtype=tf.float32)
+    output_layer = tf.matmul(output_layer, W)
 
   hidden_size = output_layer.shape[-1].value
 
