@@ -210,7 +210,7 @@ class XnliProcessor(DataProcessor):
   """Processor for the XNLI data set."""
 
   def __init__(self):
-    self.language = "de"
+    self.language = "ar"
 
   def get_train_examples(self, data_dir):
     """See base class."""
@@ -592,7 +592,7 @@ def create_model(bert_config, is_training, input_ids, input_mask, segment_ids,
   output_layer = tf.reduce_mean(model.get_sequence_output(), axis=-2)
   # do mean pooling
   # APPLY LINEAR TRANSFORMATION HERE
-  W = np.load("/mounts/work/philipp/multilingual_bert/W_1000_orth.npy")
+  W = np.load("/mounts/work/philipp/multilingual_bert/W_arb_eng.npy")
   W = tf.convert_to_tensor(W.transpose(), dtype=tf.float32)
   output_layer = tf.matmul(output_layer, W)
 
