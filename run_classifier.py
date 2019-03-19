@@ -593,7 +593,7 @@ def create_model(bert_config, is_training, input_ids, input_mask, segment_ids,
   # do mean pooling
   # APPLY LINEAR TRANSFORMATION HERE
   W = np.load("/mounts/work/philipp/multilingual_bert/Wrandom.npy")
-  W = tf.convert_to_tensor(W, dtype=tf.float32)
+  W = tf.convert_to_tensor(W.transpose(), dtype=tf.float32)
   output_layer = tf.matmul(output_layer, W)
 
   hidden_size = output_layer.shape[-1].value
