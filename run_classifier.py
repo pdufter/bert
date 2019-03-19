@@ -130,6 +130,10 @@ tf.flags.DEFINE_string(
     "[Optional] Linear Transformation to be applied before Dense layer.")
 
 
+tf.flags.DEFINE_string(
+    "language", None,
+    "[Optional] Language for XNLI.")
+
 
 class InputExample(object):
   """A single training/test example for simple sequence classification."""
@@ -215,7 +219,8 @@ class XnliProcessor(DataProcessor):
   """Processor for the XNLI data set."""
 
   def __init__(self):
-    self.language = "ar"
+    #self.language = "ar"
+    self.language = FLAGS.language
 
   def get_train_examples(self, data_dir):
     """See base class."""
