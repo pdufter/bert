@@ -604,7 +604,7 @@ def create_model(bert_config, is_training, input_ids, input_mask, segment_ids,
   if FLAGS.trafo is not None:
     # APPLY LINEAR TRANSFORMATION HERE
     W = np.load(FLAGS.trafo)
-    W = tf.convert_to_tensor(W.transpose(), dtype=tf.float32)
+    W = tf.convert_to_tensor(W, dtype=tf.float32)
     output_layer = tf.matmul(output_layer, W)
 
   hidden_size = output_layer.shape[-1].value
