@@ -403,8 +403,6 @@ def convert_single_example(ex_index, example, label_list, max_seq_length,
   label_map = {}
   for (i, label) in enumerate(label_list):
     label_map[label] = i
-  # todo modify here tokenization
-  import ipdb; ipdb.set_trace();
   tokens_a = tokenizer.tokenize(example.text_a)
   tokens_b = None
   if example.text_b:
