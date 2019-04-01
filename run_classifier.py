@@ -601,7 +601,6 @@ def create_model(bert_config, is_training, input_ids, input_mask, segment_ids,
   # If you want to use the token-level output, use model.get_sequence_output()
   # instead.
   output_layer = tf.reduce_mean(model.get_sequence_output(), axis=-2)
-  import ipdb; ipdb.set_trace();
   # do mean pooling
   if FLAGS.trafo is not None:
     # APPLY LINEAR TRANSFORMATION HERE
