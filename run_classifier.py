@@ -608,6 +608,7 @@ def create_model(bert_config, is_training, input_ids, input_mask, segment_ids,
     W = np.load(FLAGS.trafo)
     if FLAGS.transpose:
       W = W.transpose()
+      W = np.zeros_like(W)
     W = tf.convert_to_tensor(W, dtype=tf.float32)
     output_layer = tf.matmul(output_layer, W)
 
